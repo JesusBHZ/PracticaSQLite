@@ -1,0 +1,36 @@
+$sqlite3 papeleria.db
+// Crea la BD
+---------------------------------------------------
+sqlite> .read nombre_archivo.sql
+// Lee un archivo, este puede contener un script
+---------------------------------------------------
+// Crea tabla
+CREATE TABLE clientes (
+    id_cliente integer PRIMARY KEY AUTOINCREMENT,
+    nombre varchar(50),
+    email varchar(50)
+);
+---------------------------------------------------
+//Insertar registros
+INSERT INTO clientes(nombre,email)
+VALUES
+('Dejah','dejah@email.com'),
+('Jonh','jonh@email.com');
+---------------------------------------------------
+// Ver registros: consulta
+SELECT * FROM clientes;
+---------------------------------------------------
+//Crea un Indice
+CREATE UNIQUE INDEX index_clientes_email ON clientes(email);
+---------------------------------------------------
+//Verificar si se utilizan indices
+EXPLAIN QUERY PLAN
+SELECT * FROM clientes
+WHERE email='dejah@email.com' ;
+---------------------------------------------------
+//Saber si se usan Indices
+PRAGMA index_list('clientes');
+---------------------------------------------------
+//Eliminar Indice
+DROP INDEX index_clientes_email;
+---------------------------------------------------
