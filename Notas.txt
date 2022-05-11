@@ -34,3 +34,14 @@ PRAGMA index_list('clientes');
 //Eliminar Indice
 DROP INDEX index_clientes_email;
 ---------------------------------------------------
+//Agregar llave foranea
+id_cliente integer REFERENCES clientes(id_cliente)
+    --- Ejemplo --
+CREATE TABLE detalle_ventas(
+    id_detalle_venta integer PRIMARY KEY AUTOINCREMENT,
+    id_venta integer REFERENCES ventas(id_venta),
+    id_producto integer REFERENCES productos(id_producto),
+    cantidad_producto integer,
+    precio_unitario float,
+    total_x_producto float
+);
